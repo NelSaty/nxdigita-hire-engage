@@ -11,7 +11,7 @@ const DEFAULT_CERTIFICATE = {
   credentialId: "NX-2026-AI-9482",
 };
 
-const SHARE_URL = "https://nxdigita.ai";
+const SHARE_URL = "https://www.nxdigita.com";
 
 type Certificate = typeof DEFAULT_CERTIFICATE;
 
@@ -252,7 +252,7 @@ function CertificateMock({ certificate }: { certificate: Certificate }) {
       <div className="rounded-xl border border-border/60 p-6 sm:p-10">
         <div className="flex items-start justify-between gap-4">
           <p className="text-sm font-semibold tracking-tight text-foreground">
-            NxDigital AI Technologies{" "}
+            NxDigita AI Technologies{" "}
             <span className="font-normal text-muted-foreground">· TalentForge</span>
           </p>
           <span className="shrink-0 rounded-full border border-border px-3 py-1 text-[10px] font-medium tracking-wide text-muted-foreground">
@@ -289,7 +289,7 @@ function CertificateMock({ certificate }: { certificate: Certificate }) {
           </div>
         </div>
         <p className="mt-6 text-[11px] text-muted-foreground/60">
-          #NxDigitalInterns #NxDigitalCertified #CareerGrowth
+          #NxDigitaInterns #NxDigitaCertified #CareerGrowth
         </p>
       </div>
     </div>
