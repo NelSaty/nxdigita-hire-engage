@@ -132,7 +132,7 @@ export function CertificateShowcase() {
   );
 }
 
-/** Mock certificate — dark navy, thin single-tone border, serif name in accent blue. */
+/** Mock certificate using the NxDigita orange/cyan brand system. */
 function CertificateMock() {
   return (
     <div className="rounded-2xl border border-border bg-background p-2 shadow-2xl">
@@ -147,10 +147,10 @@ function CertificateMock() {
           </span>
         </div>
 
-        <p className="mt-10 font-serif text-3xl italic text-foreground sm:text-4xl">
+        <p className="mt-10 font-heading text-3xl font-semibold text-foreground sm:text-4xl">
           Congratulations,
         </p>
-        <p className="font-serif text-4xl text-primary sm:text-5xl">
+        <p className="font-heading text-4xl font-extrabold text-primary sm:text-5xl">
           {CERTIFICATE.name}
         </p>
         <p className="mt-4 text-sm text-muted-foreground">{CERTIFICATE.program}</p>

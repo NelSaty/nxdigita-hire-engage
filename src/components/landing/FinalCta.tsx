@@ -6,11 +6,11 @@ export function FinalCta() {
     <section id="get-started" className="bg-background py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
-          <div className="rounded-2xl border border-border bg-surface-raised px-6 py-16 text-center sm:px-12">
-            <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <div className="dark-panel rounded-xl border border-slate-navy px-6 py-16 text-center sm:px-12">
+            <h2 className="mx-auto max-w-2xl text-3xl font-bold text-dark-foreground sm:text-4xl">
               Ready to build your verified track record?
             </h2>
-            <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
+            <p className="mx-auto mt-4 max-w-lg text-dark-muted">
               Join the program and start shipping live work that hiring partners
               can actually see.
             </p>

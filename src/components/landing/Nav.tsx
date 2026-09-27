@@ -24,17 +24,20 @@ export function Nav() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
         scrolled
-          ? "border-border bg-background/85 backdrop-blur-md"
+          ? "border-dark-foreground/10 bg-navy/90 backdrop-blur-md"
           : "border-transparent bg-transparent",
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link to="/" className="flex flex-col leading-none">
-          <span className="text-[15px] font-semibold tracking-tight text-foreground">
+        <Link to="/" className="flex items-center gap-3 leading-none">
+          <span className="inline-flex size-9 items-center justify-center rounded-md bg-primary font-heading text-sm font-extrabold text-primary-foreground">NX</span>
+          <span className="flex flex-col">
+          <span className="text-[15px] font-bold text-dark-foreground">
             NxDigita AI Technologies
           </span>
-          <span className="mt-1 text-[10px] font-medium tracking-[0.28em] text-muted-foreground">
+          <span className="mt-1 text-[10px] font-medium tracking-[0.2em] text-dark-muted">
             HIRE · ENGAGE · DEPLOY
+          </span>
           </span>
         </Link>
 
@@ -43,7 +46,7 @@ export function Nav() {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm text-dark-muted transition-colors hover:text-dark-foreground"
             >
               {link.label}
             </a>
@@ -53,7 +56,7 @@ export function Nav() {
         <div className="flex items-center gap-4">
           <Link
             to="/signup"
-            className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:block"
+            className="hidden text-sm text-dark-muted transition-colors hover:text-dark-foreground sm:block"
           >
             Login
           </Link>

@@ -43,6 +43,7 @@ function Signup() {
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
+      <div className="dark-panel h-2 w-full" aria-hidden="true" />
       <div className="mx-auto w-full max-w-md px-4 py-10 sm:px-6">
         <Link
           to="/"
