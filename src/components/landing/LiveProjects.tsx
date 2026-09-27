@@ -74,7 +74,6 @@ function CodeVisual() {
           </p>
         ))}
       </div>
-vt-3.5
     </div>
   );
 }
