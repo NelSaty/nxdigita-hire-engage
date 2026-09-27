@@ -72,7 +72,7 @@ export function Metrics() {
 }
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
+  const ref = useRef<HTMLParagraphElement>(null);
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return;
+        if (!entry?.isIntersecting) return;
         observer.disconnect();
         const duration = 1200;
         const start = performance.now();
