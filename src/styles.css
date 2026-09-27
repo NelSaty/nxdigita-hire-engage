@@ -4,11 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * NxDigita AI Technologies — enterprise dark design system.
- * Near-black navy base, single restrained electric-blue accent.
- * All colors in oklch. Serif (Instrument Serif) reserved for hero/certificate names.
- */
+/* NxDigita — orange/cyan brand system on deep navy and clean light surfaces. */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -37,38 +33,51 @@
   --color-surface: var(--surface);
   --color-surface-raised: var(--surface-raised);
   --color-glow: var(--glow);
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --color-navy: var(--navy);
+  --color-charcoal: var(--charcoal);
+  --color-slate-navy: var(--slate-navy);
+  --color-dark-foreground: var(--dark-foreground);
+  --color-dark-muted: var(--dark-muted);
+  --color-soft-orange: var(--soft-orange);
+  --color-soft-cyan: var(--soft-cyan);
+  --color-cyan: var(--cyan);
+  --color-cyan-dark: var(--cyan-dark);
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.75rem;
-  /* Base: near-black navy (#0B0E14 range) */
-  --background: oklch(0.155 0.014 260);
-  --foreground: oklch(0.93 0.008 250);
-  /* Cards: slightly raised navy panels */
-  --card: oklch(0.185 0.016 260);
-  --card-foreground: oklch(0.93 0.008 250);
-  --popover: oklch(0.19 0.016 260);
-  --popover-foreground: oklch(0.93 0.008 250);
-  /* Single restrained accent: electric blue (#3B82F6) */
-  --primary: oklch(0.62 0.19 260);
-  --primary-foreground: oklch(0.98 0.003 250);
-  --secondary: oklch(0.22 0.018 260);
-  --secondary-foreground: oklch(0.93 0.008 250);
-  --muted: oklch(0.215 0.016 260);
-  --muted-foreground: oklch(0.66 0.018 255);
-  --accent: oklch(0.22 0.018 260);
-  --accent-foreground: oklch(0.93 0.008 250);
-  --destructive: oklch(0.6 0.2 25);
-  /* Slate-cyan highlight (#38BDF8) used sparingly */
-  --glow: oklch(0.75 0.13 232);
-  --border: oklch(0.93 0.008 250 / 10%);
-  --input: oklch(0.93 0.008 250 / 14%);
-  --ring: oklch(0.62 0.19 260 / 60%);
-  /* Section surfaces */
-  --surface: oklch(0.135 0.013 260);
-  --surface-raised: oklch(0.21 0.02 262);
+  --radius: 0.625rem;
+  --background: oklch(0.9702 0 0);
+  --foreground: oklch(0.1831 0.0309 263.38);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.1831 0.0309 263.38);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.1831 0.0309 263.38);
+  --primary: oklch(0.7022 0.2004 45.1);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.9525 0.0353 200.93);
+  --secondary-foreground: oklch(0.1831 0.0309 263.38);
+  --muted: oklch(0.9498 0.0263 62.01);
+  --muted-foreground: oklch(0.4873 0.0358 254.48);
+  --accent: oklch(0.9525 0.0353 200.93);
+  --accent-foreground: oklch(0.1831 0.0309 263.38);
+  --destructive: oklch(0.5613 0.1689 32.4);
+  --glow: oklch(0.7494 0.1264 205.35);
+  --cyan: oklch(0.7494 0.1264 205.35);
+  --cyan-dark: oklch(0.6387 0.1078 205.26);
+  --border: oklch(0.8927 0.011 256.7);
+  --input: oklch(0.8927 0.011 256.7);
+  --ring: oklch(0.7022 0.2004 45.1 / 45%);
+  --surface: oklch(1 0 0);
+  --surface-raised: oklch(0.9804 0.0127 63.93);
+  --soft-orange: oklch(0.9804 0.0127 63.93);
+  --soft-cyan: oklch(0.9525 0.0353 200.93);
+  --navy: oklch(0.1479 0.0274 255.17);
+  --charcoal: oklch(0.1869 0.0107 268.11);
+  --slate-navy: oklch(0.2415 0.0259 258.33);
+  --dark-foreground: oklch(0.9702 0 0);
+  --dark-muted: oklch(0.68 0.032 256);
 }
 
 @layer base {
@@ -87,8 +96,18 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    letter-spacing: 0;
+  }
+
   ::selection {
-    background: oklch(0.62 0.19 260 / 35%);
+    background: oklch(0.7022 0.2004 45.1 / 28%);
   }
 }
 
@@ -118,15 +137,30 @@
 /* Faint grid texture for hero band */
 .bg-grid {
   background-image:
-    linear-gradient(to right, oklch(0.93 0.008 250 / 4%) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(0.93 0.008 250 / 4%) 1px, transparent 1px);
+    linear-gradient(to right, oklch(1 0 0 / 4%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 4%) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 40%, transparent 100%);
 }
 
 .text-gradient-accent {
-  background: linear-gradient(120deg, var(--color-primary), var(--color-glow));
+  background: linear-gradient(120deg, var(--color-primary), oklch(0.78 0.16 52));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.dark-panel {
+  background: linear-gradient(
+    145deg,
+    var(--color-navy) 0%,
+    var(--color-charcoal) 65%,
+    var(--color-slate-navy) 100%
+  );
+}
+
+.hero-orbits {
+  background-image:
+    radial-gradient(circle at center, transparent 0 22%, oklch(0.7022 0.2004 45.1 / 20%) 22.2% 22.5%, transparent 22.7% 39%, oklch(0.7494 0.1264 205.35 / 13%) 39.2% 39.5%, transparent 39.7%),
+    linear-gradient(128deg, transparent 49.7%, oklch(0.7494 0.1264 205.35 / 22%) 49.8% 50%, transparent 50.1%);
 }

@@ -45,14 +45,14 @@ const SOCIALS = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-surface">
+    <footer className="dark-panel border-t border-dark-foreground/10">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 md:grid-cols-6">
           <div className="md:col-span-2">
-            <p className="text-sm font-semibold tracking-tight text-foreground">
+            <p className="font-heading text-sm font-bold text-dark-foreground">
               NxDigita AI Technologies
             </p>
-            <p className="mt-1.5 text-[10px] font-medium tracking-[0.28em] text-muted-foreground">
+            <p className="mt-1.5 text-[10px] font-medium tracking-[0.2em] text-dark-muted">
               HIRE · ENGAGE · DEPLOY
             </p>
             <div className="mt-6 flex gap-3">
@@ -63,7 +63,7 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={social.label}
-                  className="inline-flex size-9 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                  className="inline-flex size-9 items-center justify-center rounded-md border border-dark-foreground/15 text-dark-muted transition-colors hover:border-cyan/50 hover:text-cyan"
                 >
                   <social.icon className="size-4" aria-hidden="true" />
                 </a>
@@ -73,7 +73,7 @@ export function Footer() {
 
           {COLUMNS.map((column) => (
             <div key={column.heading}>
-              <p className="text-xs font-semibold tracking-[0.15em] text-muted-foreground">
+              <p className="text-xs font-semibold tracking-[0.15em] text-primary">
                 {column.heading.toUpperCase()}
               </p>
               <ul className="mt-4 space-y-2.5">
@@ -82,14 +82,14 @@ export function Footer() {
                     {link.href.startsWith("/") ? (
                       <Link
                         to={link.href}
-                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        className="text-sm text-dark-muted transition-colors hover:text-dark-foreground"
                       >
                         {link.label}
                       </Link>
                     ) : (
                       <a
                         href={link.href}
-                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        className="text-sm text-dark-muted transition-colors hover:text-dark-foreground"
                       >
                         {link.label}
                       </a>
@@ -101,7 +101,7 @@ export function Footer() {
           ))}
         </div>
 
-        <p className="mt-12 border-t border-border pt-6 text-xs text-muted-foreground/60">
+        <p className="mt-12 border-t border-dark-foreground/10 pt-6 text-xs text-dark-muted">
           © {new Date().getFullYear()} NxDigita AI Technologies. All rights
           reserved.
         </p>

@@ -10,27 +10,27 @@ const TRUST_CHIPS = [
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-surface pt-16">
+    <section className="dark-panel relative overflow-hidden pt-16">
       <div className="bg-grid absolute inset-0" aria-hidden="true" />
       <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-16 sm:px-6 sm:pt-24 lg:pb-24">
         <div className="grid items-center gap-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal>
-              <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-xs font-medium tracking-wide text-muted-foreground">
-                <BadgeCheck className="size-3.5 text-primary" aria-hidden="true" />
+              <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/35 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary">
+                <span className="size-1.5 rounded-full bg-primary" aria-hidden="true" />
                 Internship-to-placement platform for engineering graduates
               </p>
             </Reveal>
             <Reveal delay={80}>
-              <h1 className="text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[3.6rem]">
+              <h1 className="text-4xl font-extrabold leading-[1.08] text-dark-foreground sm:text-5xl lg:text-[3.6rem]">
                 Real Internships. Live Projects.{" "}
-                <span className="font-serif font-normal text-gradient-accent">
+                <span className="text-gradient-accent">
                   Real Placements.
                 </span>
               </h1>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-dark-muted">
                 NxDigita AI Technologies connects engineering graduates to 250+ MSME
                 and startup hiring partners through live, shipped work — not
                 simulations.
@@ -46,18 +46,18 @@ export function Hero() {
                 </Link>
                 <a
                   href="#how-it-works"
-                  className="inline-flex h-11 items-center justify-center rounded-md border border-border px-6 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                  className="inline-flex h-11 items-center justify-center rounded-md border border-dark-foreground/20 px-6 text-sm font-medium text-dark-foreground transition-colors hover:border-cyan/60 hover:bg-cyan/10"
                 >
                   See How It Works
                 </a>
               </div>
             </Reveal>
             <Reveal delay={320}>
-              <div className="mt-10 flex flex-wrap gap-x-2 gap-y-2 border-t border-border pt-6">
+              <div className="mt-10 flex flex-wrap gap-x-2 gap-y-2 border-t border-dark-foreground/10 pt-6">
                 {TRUST_CHIPS.map((chip) => (
                   <span
                     key={chip}
-                    className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
+                    className="rounded-full border border-dark-foreground/10 bg-dark-foreground/5 px-3 py-1 text-xs font-medium text-dark-muted"
                   >
                     {chip}
                   </span>
@@ -80,10 +80,10 @@ export function Hero() {
 /** Stylized certificate + deploy visual — no stock photography. */
 function HeroVisual() {
   return (
-    <div className="relative mx-auto w-full max-w-sm">
+    <div className="hero-orbits relative mx-auto aspect-square w-full max-w-md rounded-full">
       {/* Terminal / deploy card behind */}
       <div
-        className="absolute -right-4 -top-8 hidden w-64 rounded-lg border border-border bg-card p-4 font-mono text-[11px] leading-relaxed text-muted-foreground shadow-xl sm:block"
+        className="absolute right-0 top-2 hidden w-64 rounded-lg border border-dark-foreground/10 bg-charcoal p-4 font-mono text-[11px] leading-relaxed text-dark-muted shadow-xl sm:block"
         aria-hidden="true"
       >
         <div className="mb-2 flex gap-1.5">
@@ -102,20 +102,20 @@ function HeroVisual() {
       </div>
 
       {/* Verified certificate card in front */}
-      <div className="relative rounded-xl border border-border bg-card p-6 shadow-2xl sm:mt-10">
+      <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 rounded-xl border border-dark-foreground/15 bg-slate-navy p-6 shadow-2xl sm:inset-x-8">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-semibold tracking-tight text-foreground">
+          <p className="text-xs font-semibold text-dark-foreground">
             NxDigita AI Technologies
           </p>
           <span className="rounded-full border border-primary/40 px-2.5 py-0.5 text-[10px] font-medium text-primary">
             Verified
           </span>
         </div>
-        <p className="mt-6 font-serif text-3xl text-foreground">Aarav Sharma</p>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <p className="mt-6 font-heading text-3xl font-bold text-dark-foreground">Aarav Sharma</p>
+        <p className="mt-1 text-sm text-dark-muted">
           Live Project Contribution — Credited
         </p>
-        <div className="mt-6 flex items-center justify-between border-t border-border pt-4 text-[11px] text-muted-foreground">
+        <div className="mt-6 flex items-center justify-between border-t border-dark-foreground/10 pt-4 text-[11px] text-dark-muted">
           <span className="font-mono tracking-wider">CRED ID · NX-2026-AI-9482</span>
           <span className="inline-flex items-center gap-1 text-primary">
             <BadgeCheck className="size-3.5" aria-hidden="true" />
