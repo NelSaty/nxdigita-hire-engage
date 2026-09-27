@@ -17,7 +17,7 @@ const COLUMNS = [
       { label: "Why Us", href: "#why-us" },
       { label: "Partners", href: "#partners" },
       { label: "Sign Up", href: "/signup" },
-t    ],
+    ],
   },
   {
     heading: "Partners",

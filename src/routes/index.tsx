@@ -1,24 +1,61 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/landing/Nav";
+import { Hero } from "@/components/landing/Hero";
+import { WhyUs } from "@/components/landing/WhyUs";
+import { Process } from "@/components/landing/Process";
+import { LiveProjects } from "@/components/landing/LiveProjects";
+import { Journey } from "@/components/landing/Journey";
+import { Partners } from "@/components/landing/Partners";
+import { PlacementCards } from "@/components/landing/PlacementCards";
+import { Metrics } from "@/components/landing/Metrics";
+import { CertificateShowcase } from "@/components/landing/CertificateShowcase";
+import { FinalCta } from "@/components/landing/FinalCta";
+import { Footer } from "@/components/landing/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      {
+        title: "NxDigita AI Technologies — Real Internships. Real Placements.",
+      },
+      {
+        name: "description",
+        content:
+          "NxDigita AI Technologies connects engineering graduates to 250+ MSME and startup hiring partners through live, shipped work — Hire · Engage · Deploy.",
+      },
+      {
+        property: "og:title",
+        content: "NxDigita AI Technologies — Real Internships. Real Placements.",
+      },
+      {
+        property: "og:description",
+        content:
+          "Live internships where every graduate ships real production work, earns a verified certificate, and enters a 250+ MSME & startup placement pipeline.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+et    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <Nav />
+      <main>
+        <Hero />
+        <WhyUs />
+        <Process />
+        <LiveProjects />
+        <Journey />
+        <Partners />
+        <PlacementCards />
+        <Metrics />
+        <CertificateShowcase />
+        <FinalCta />
+      </main>
+      <Footer />
     </div>
   );
 }
