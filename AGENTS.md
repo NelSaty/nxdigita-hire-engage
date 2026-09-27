@@ -13,6 +13,7 @@
 
 - Landing page sections are separate components under `src/components/landing/`, composed by `src/routes/index.tsx`; `/signup` is a placeholder route.
 - Why: the brief requires each section to be its own component; scroll-reveal is handled by `src/components/landing/Reveal.tsx`.
+- Certificates are personalized and generated in the browser with jsPDF so downloads work without storing visitor details.
 
 ## Brand system
 
