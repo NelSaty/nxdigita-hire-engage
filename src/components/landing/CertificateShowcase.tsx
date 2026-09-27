@@ -1,25 +1,23 @@
 import { useState } from "react";
 import { Download, FileText, Linkedin, Loader2, Share2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Reveal } from "./Reveal";
 
-/**
- * Placeholder UI for the post-signup intern dashboard flow.
- * Wire actual PDF generation and share intents later — dummy data for now.
- */
-const CERTIFICATE = {
-  name: "Your Name Here",
-  college: "Your College",
+const DEFAULT_CERTIFICATE = {
+  name: "Aarav Sharma",
+  college: "National Institute of Technology",
   program: "6-month AI & Talent-Tech Internship",
   issued: "Sep 2026",
   credentialId: "NX-2026-AI-9482",
 };
 
-const SHARE_MESSAGE =
-  "I've completed my internship with NxDigita AI Technologies! 🎓 #NxDigitalCertified #CareerGrowth";
-const SHARE_URL = "https://nxdigita.ai";
+const SHARE_URL = "https://www.nxdigita.com";
 
-function shareUrl(network: "linkedin" | "x" | "whatsapp") {
-  const text = encodeURIComponent(SHARE_MESSAGE);
+type Certificate = typeof DEFAULT_CERTIFICATE;
+
+function shareUrl(network: "linkedin" | "x" | "whatsapp", certificate: Certificate) {
+  const message = `${certificate.name} completed the ${certificate.program} with NxDigita AI Technologies. #NxDigitaCertified #CareerGrowth`;
+  const text = encodeURIComponent(message);
   const url = encodeURIComponent(SHARE_URL);
   switch (network) {
     case "linkedin":
@@ -32,18 +30,91 @@ function shareUrl(network: "linkedin" | "x" | "whatsapp") {
 }
 
 export function CertificateShowcase() {
+  const [certificate, setCertificate] = useState(DEFAULT_CERTIFICATE);
   const [downloading, setDownloading] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
 
-  // Placeholder: real PDF generation ships with the intern dashboard.
-  const handleDownload = () => {
+  const updateCertificate = (field: "name" | "college" | "program", value: string) => {
+    setCertificate((current) => ({ ...current, [field]: value }));
+  };
+
+  const handleDownload = async () => {
     if (downloading) return;
     setDownloading(true);
-    setTimeout(() => {
+
+    try {
+      const { jsPDF } = await import("jspdf");
+      const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
+
+      pdf.setFillColor(250, 250, 250);
+      pdf.rect(0, 0, width, height, "F");
+      pdf.setDrawColor(255, 107, 0);
+      pdf.setLineWidth(1.5);
+      pdf.rect(10, 10, width - 20, height - 20);
+      pdf.setDrawColor(16, 196, 212);
+      pdf.setLineWidth(0.45);
+      pdf.rect(14, 14, width - 28, height - 28);
+
+      pdf.setTextColor(4, 11, 22);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(17);
+      pdf.text("NxDigita AI Technologies", width / 2, 34, { align: "center" });
+      pdf.setTextColor(90, 98, 110);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(10);
+      pdf.text("HIRE · ENGAGE · DEPLOY", width / 2, 42, { align: "center" });
+
+      pdf.setTextColor(4, 11, 22);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(30);
+      pdf.text("Certificate of Completion", width / 2, 70, { align: "center" });
+      pdf.setTextColor(90, 98, 110);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(12);
+      pdf.text("This certificate is proudly presented to", width / 2, 84, { align: "center" });
+
+      pdf.setTextColor(255, 107, 0);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(27);
+      pdf.text(certificate.name.trim() || "Certificate Recipient", width / 2, 103, {
+        align: "center",
+        maxWidth: width - 55,
+      });
+      pdf.setTextColor(4, 11, 22);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(12);
+      pdf.text(`for successfully completing the ${certificate.program}`, width / 2, 120, {
+        align: "center",
+        maxWidth: width - 55,
+      });
+      pdf.text(`at ${certificate.college.trim() || "their institution"}`, width / 2, 131, {
+        align: "center",
+        maxWidth: width - 55,
+      });
+
+      pdf.setDrawColor(210, 214, 220);
+      pdf.line(35, 153, width - 35, 153);
+      pdf.setTextColor(90, 98, 110);
+      pdf.setFontSize(9);
+      pdf.text(`ISSUED: ${certificate.issued}`, 40, 164);
+      pdf.text(`CREDENTIAL ID: ${certificate.credentialId}`, width - 40, 164, { align: "right" });
+      pdf.setTextColor(10, 158, 171);
+      pdf.setFont("helvetica", "bold");
+      pdf.text("Verified live project contribution", width / 2, 180, { align: "center" });
+
+      const safeName = (certificate.name.trim() || "certificate")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      pdf.save(`nxdigita-certificate-${safeName}.pdf`);
       setDownloading(false);
       setDownloaded(true);
       setTimeout(() => setDownloaded(false), 3000);
-    }, 1400);
+    } catch {
+      setDownloading(false);
+    }
   };
 
   return (
@@ -66,13 +137,34 @@ export function CertificateShowcase() {
 
         <Reveal delay={120}>
           <div className="mx-auto mt-14 max-w-2xl">
-            <CertificateMock />
+            <div className="mb-6 grid gap-4 rounded-lg border border-border bg-card p-4 sm:grid-cols-2">
+              <CertificateField
+                label="Certificate name"
+                value={certificate.name}
+                onChange={(value) => updateCertificate("name", value)}
+              />
+              <CertificateField
+                label="College"
+                value={certificate.college}
+                onChange={(value) => updateCertificate("college", value)}
+              />
+              <div className="sm:col-span-2">
+                <CertificateField
+                  label="Program"
+                  value={certificate.program}
+                  onChange={(value) => updateCertificate("program", value)}
+                />
+              </div>
+            </div>
+
+            <CertificateMock certificate={certificate} />
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <button
+              <Button
                 onClick={handleDownload}
                 disabled={downloading}
-                className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+                size="lg"
+                className="h-11 w-full sm:w-auto"
               >
                 {downloading ? (
                   <Loader2 className="size-4 animate-spin" aria-hidden="true" />
@@ -82,9 +174,9 @@ export function CertificateShowcase() {
                 {downloading
                   ? "Preparing…"
                   : downloaded
-                    ? "Available after sign-up"
+                    ? "Downloaded"
                     : "Download Certificate"}
-              </button>
+              </Button>
 
               <div className="flex w-full items-center gap-2 sm:w-auto">
                 <span className="hidden h-11 items-center gap-2 rounded-md border border-border px-4 text-sm text-muted-foreground sm:inline-flex">
@@ -92,7 +184,7 @@ export function CertificateShowcase() {
                   Share Achievement
                 </span>
                 <a
-                  href={shareUrl("linkedin")}
+                  href={shareUrl("linkedin", certificate)}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Share on LinkedIn"
@@ -101,7 +193,7 @@ export function CertificateShowcase() {
                   <Linkedin className="size-4" aria-hidden="true" />
                 </a>
                 <a
-                  href={shareUrl("x")}
+                  href={shareUrl("x", certificate)}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Share on X"
@@ -113,7 +205,7 @@ export function CertificateShowcase() {
                   </svg>
                 </a>
                 <a
-                  href={shareUrl("whatsapp")}
+                  href={shareUrl("whatsapp", certificate)}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Share on WhatsApp"
@@ -132,14 +224,35 @@ export function CertificateShowcase() {
   );
 }
 
-/** Mock certificate using the NxDigita orange/cyan brand system. */
-function CertificateMock() {
+function CertificateField({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <label className="block text-sm text-muted-foreground">
+      {label}
+      <input
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        maxLength={80}
+        className="mt-1.5 h-10 w-full rounded-md border border-input bg-background px-3 text-sm text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-ring"
+      />
+    </label>
+  );
+}
+
+function CertificateMock({ certificate }: { certificate: Certificate }) {
   return (
     <div className="rounded-2xl border border-border bg-background p-2 shadow-2xl">
       <div className="rounded-xl border border-border/60 p-6 sm:p-10">
         <div className="flex items-start justify-between gap-4">
           <p className="text-sm font-semibold tracking-tight text-foreground">
-            NxDigital AI Technologies{" "}
+            NxDigita AI Technologies{" "}
             <span className="font-normal text-muted-foreground">· TalentForge</span>
           </p>
           <span className="shrink-0 rounded-full border border-border px-3 py-1 text-[10px] font-medium tracking-wide text-muted-foreground">
@@ -151,32 +264,32 @@ function CertificateMock() {
           Congratulations,
         </p>
         <p className="font-heading text-4xl font-extrabold text-primary sm:text-5xl">
-          {CERTIFICATE.name}
+          {certificate.name || "Certificate Recipient"}
         </p>
-        <p className="mt-4 text-sm text-muted-foreground">{CERTIFICATE.program}</p>
+        <p className="mt-4 text-sm text-muted-foreground">{certificate.program}</p>
 
         <div className="mt-12 grid gap-6 border-t border-border pt-6 text-xs sm:grid-cols-3">
           <div>
             <p className="tracking-[0.18em] text-muted-foreground/70">COLLEGE</p>
             <p className="mt-1.5 text-sm font-medium text-foreground">
-              {CERTIFICATE.college}
+              {certificate.college || "Institution"}
             </p>
           </div>
           <div>
             <p className="tracking-[0.18em] text-muted-foreground/70">ISSUED</p>
             <p className="mt-1.5 text-sm font-medium text-foreground">
-              {CERTIFICATE.issued}
+              {certificate.issued}
             </p>
           </div>
           <div>
             <p className="tracking-[0.18em] text-muted-foreground/70">CREDENTIAL ID</p>
             <p className="mt-1.5 font-mono text-sm font-medium text-foreground">
-              {CERTIFICATE.credentialId}
+              {certificate.credentialId}
             </p>
           </div>
         </div>
         <p className="mt-6 text-[11px] text-muted-foreground/60">
-          #NxDigitalInterns #NxDigitalCertified #CareerGrowth
+          #NxDigitaInterns #NxDigitaCertified #CareerGrowth
         </p>
       </div>
     </div>
