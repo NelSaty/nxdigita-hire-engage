@@ -12,8 +12,8 @@ export function Hero() {
   return (
     <section className="dark-panel relative overflow-hidden pt-16">
       <div className="bg-grid absolute inset-0" aria-hidden="true" />
-      <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-16 sm:px-6 sm:pt-24 lg:pb-24">
-        <div className="grid items-center gap-14 lg:grid-cols-12">
+      <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-12 sm:px-6 sm:pb-16 sm:pt-24 lg:pb-24">
+        <div className="grid items-center gap-8 sm:gap-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Reveal>
               <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/35 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary">
@@ -53,7 +53,7 @@ export function Hero() {
               </div>
             </Reveal>
             <Reveal delay={320}>
-              <div className="mt-10 flex flex-wrap gap-x-2 gap-y-2 border-t border-dark-foreground/10 pt-6">
+              <div className="mt-8 hidden flex-wrap gap-x-2 gap-y-2 border-t border-dark-foreground/10 pt-6 sm:flex">
                 {TRUST_CHIPS.map((chip) => (
                   <span
                     key={chip}
@@ -80,7 +80,7 @@ export function Hero() {
 /** Stylized certificate + deploy visual — no stock photography. */
 function HeroVisual() {
   return (
-    <div className="hero-orbits relative mx-auto aspect-square w-full max-w-md rounded-full">
+    <div className="hero-orbits relative mx-auto h-60 w-full max-w-md rounded-full sm:aspect-square sm:h-auto">
       {/* Terminal / deploy card behind */}
       <div
         className="absolute right-0 top-2 hidden w-64 rounded-lg border border-dark-foreground/10 bg-charcoal p-4 font-mono text-[11px] leading-relaxed text-dark-muted shadow-xl sm:block"
@@ -102,7 +102,7 @@ function HeroVisual() {
       </div>
 
       {/* Verified certificate card in front */}
-      <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 rounded-xl border border-dark-foreground/15 bg-slate-navy p-6 shadow-2xl sm:inset-x-8">
+      <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 rounded-xl border border-dark-foreground/15 bg-slate-navy p-5 shadow-2xl sm:inset-x-8 sm:p-6">
         <div className="flex items-center justify-between">
           <p className="text-xs font-semibold text-dark-foreground">
             NxDigita AI Technologies

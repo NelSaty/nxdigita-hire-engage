@@ -57,18 +57,18 @@ function CodeVisual() {
   ];
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
-      <div className="flex items-center gap-1.5 border-b border-border px-4 py-3">
-        <span className="size-2.5 rounded-full bg-muted-foreground/40" />
-        <span className="size-2.5 rounded-full bg-muted-foreground/40" />
-        <span className="size-2.5 rounded-full bg-muted-foreground/40" />
-        <span className="ml-3 font-mono text-[11px] text-muted-foreground">
+    <div className="dark-panel overflow-hidden rounded-xl border border-slate-navy shadow-2xl">
+      <div className="flex items-center gap-1.5 border-b border-dark-foreground/10 px-4 py-3">
+        <span className="size-2.5 rounded-full bg-primary" />
+        <span className="size-2.5 rounded-full bg-cyan" />
+        <span className="size-2.5 rounded-full bg-dark-muted/40" />
+        <span className="ml-3 font-mono text-[11px] text-dark-muted">
           intern@nxdigita — deploy
         </span>
       </div>
       <div className="space-y-2.5 p-5 font-mono text-[12.5px] leading-relaxed sm:text-[13px]">
         {lines.map((line, i) => (
-          <p key={i} className={line.dim ? "text-muted-foreground" : "text-foreground"}>
+          <p key={i} className={line.dim ? "text-dark-muted" : "text-dark-foreground"}>
             {line.prompt && <span className="mr-2 text-glow">$</span>}
             {line.text}
           </p>
