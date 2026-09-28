@@ -33,7 +33,7 @@ function Markdown({ text }: { text: string }) {
               <span className="shrink-0 font-semibold text-primary">
                 {/^\d/.test(bullet[1]) ? bullet[1] : "•"}
               </span>
-              <span>{renderInline(bullet[2])}</span>
+              <span>{renderInline(bullet[2] ?? "")}</span>
             </div>
           );
         }
