@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { label: "Product", href: "#live-projects" },
   { label: "Why Us", href: "#why-us" },
   { label: "Partners", href: "#partners" },
+  { label: "Career Advisor", href: "#career-advisor" },
 ];
 
 export function Nav() {
