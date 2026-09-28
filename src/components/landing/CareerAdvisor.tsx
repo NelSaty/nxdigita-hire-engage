@@ -31,7 +31,7 @@ function Markdown({ text }: { text: string }) {
           return (
             <div key={i} className="flex gap-2 pl-1">
               <span className="shrink-0 font-semibold text-primary">
-                {/^\d/.test(bullet[1]) ? bullet[1] : "•"}
+                {/^\d/.test(bullet[1] ?? "") ? bullet[1] : "•"}
               </span>
               <span>{renderInline(bullet[2] ?? "")}</span>
             </div>
