@@ -9,6 +9,7 @@ import { Partners } from "@/components/landing/Partners";
 import { PlacementCards } from "@/components/landing/PlacementCards";
 import { Metrics } from "@/components/landing/Metrics";
 import { CertificateShowcase } from "@/components/landing/CertificateShowcase";
+import { CareerAdvisor } from "@/components/landing/CareerAdvisor";
 import { FinalCta } from "@/components/landing/FinalCta";
 import { Footer } from "@/components/landing/Footer";
 
@@ -53,6 +54,7 @@ function Index() {
         <PlacementCards />
         <Metrics />
         <CertificateShowcase />
+        <CareerAdvisor />
         <FinalCta />
       </main>
       <Footer />

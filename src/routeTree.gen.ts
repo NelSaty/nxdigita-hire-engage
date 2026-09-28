@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as ApiRecommendRouteImport } from './routes/api/recommend'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiRecommendRoute = ApiRecommendRouteImport.update({
+  id: '/api/recommend',
+  path: '/api/recommend',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/signup': typeof SignupRoute
+  '/api/recommend': typeof ApiRecommendRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/signup': typeof SignupRoute
+  '/api/recommend': typeof ApiRecommendRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/signup': typeof SignupRoute
+  '/api/recommend': typeof ApiRecommendRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/signup'
+  fullPaths: '/' | '/signup' | '/api/recommend'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/signup'
-  id: '__root__' | '/' | '/signup'
+  to: '/' | '/signup' | '/api/recommend'
+  id: '__root__' | '/' | '/signup' | '/api/recommend'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SignupRoute: typeof SignupRoute
+  ApiRecommendRoute: typeof ApiRecommendRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/recommend': {
+      id: '/api/recommend'
+      path: '/api/recommend'
+      fullPath: '/api/recommend'
+      preLoaderRoute: typeof ApiRecommendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SignupRoute: SignupRoute,
+  ApiRecommendRoute: ApiRecommendRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
