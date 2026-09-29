@@ -30,8 +30,16 @@ const COLUMNS = [
     heading: "Legal",
     links: [
       { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Refund Policy", href: "#" },
+      {
+  label: "Terms and Conditions",
+  href: "/Terms_and_conditions_nxdigita%20.pdf",
+  newTab: true,
+},
+{
+  label: "Refund Policy",
+  href: "/Refund_Policy%20.pdf",
+  newTab: true,
+},
     ],
   },
 ];
@@ -71,33 +79,36 @@ export function Footer() {
           </div>
 
           {COLUMNS.map((column) => (
-            <div key={column.heading}>
-              <p className="text-xs font-semibold tracking-[0.15em] text-primary">
-                {column.heading.toUpperCase()}
-              </p>
-              <ul className="mt-4 space-y-2.5">
-                {column.links.map((link) => (
-                  <li key={link.label}>
-                    {link.href.startsWith("/") ? (
-                      <Link
-                        to={link.href}
-                        className="text-sm text-dark-muted transition-colors hover:text-dark-foreground"
-                      >
-                        {link.label}
-                      </Link>
-                    ) : (
-                      <a
-                        href={link.href}
-                        className="text-sm text-dark-muted transition-colors hover:text-dark-foreground"
-                      >
-                        {link.label}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+  <div key={column.heading}>
+    <p className="text-xs font-semibold tracking-[0.15em] text-primary">
+      {column.heading.toUpperCase()}
+    </p>
+    <ul className="mt-4 space-y-2.5">
+      {column.links.map((link) => (
+        <li key={link.label}>
+          {link.href.startsWith("/") &&
+          !/\.(pdf|docx?)$/i.test(link.href) ? (
+            <Link
+              to={link.href}
+              className="text-sm text-dark-muted transition-colors hover:text-dark-foreground"
+            >
+              {link.label}
+            </Link>
+          ) : (
+            <a
+              href={link.href}
+              target={link.newTab ? "_blank" : undefined}
+              rel={link.newTab ? "noreferrer" : undefined}
+              className="text-sm text-dark-muted transition-colors hover:text-dark-foreground"
+            >
+              {link.label}
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+ ))}
         </div>
 
         <p className="mt-12 border-t border-dark-foreground/10 pt-6 text-xs text-dark-muted">
@@ -108,3 +119,5 @@ export function Footer() {
     </footer>
   );
 }
+
+
