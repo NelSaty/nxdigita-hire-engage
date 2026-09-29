@@ -39,6 +39,7 @@ export function PlacementCards() {
             Both outcomes are built into the program —{" "}
             <Link
               to="/signup"
+              search={{ mode: "signup" }}
               className="font-medium text-primary underline-offset-4 hover:underline"
             >
               start with a free account

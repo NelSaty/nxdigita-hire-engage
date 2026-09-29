@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
 
 const NAV_LINKS = [
   { label: "Product", href: "#live-projects" },
@@ -11,12 +12,19 @@ const NAV_LINKS = [
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    void supabase.auth.getSession().then(({ data }) => setSignedIn(Boolean(data.session)));
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => setSignedIn(Boolean(session)));
+    return () => data.subscription.unsubscribe();
   }, []);
 
   return (
@@ -54,18 +62,17 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link
-            to="/signup"
-            className="hidden text-sm text-dark-muted transition-colors hover:text-dark-foreground sm:block"
-          >
-            Login
-          </Link>
-          <Link
-            to="/signup"
-            className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Sign Up Free
-          </Link>
+          {signedIn ? (
+            <>
+              <Link to="/dashboard" className="hidden text-sm text-dark-muted transition-colors hover:text-dark-foreground sm:block">Dashboard</Link>
+              <Link to="/dashboard" className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">My Progress</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/signup" search={{ mode: "login" }} className="hidden text-sm text-dark-muted transition-colors hover:text-dark-foreground sm:block">Login</Link>
+              <Link to="/signup" search={{ mode: "signup" }} className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">Sign Up Free</Link>
+            </>
+          )}
         </div>
       </div>
     </header>

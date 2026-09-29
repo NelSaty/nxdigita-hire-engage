@@ -14,7 +14,205 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      intern_milestones: {
+        Row: {
+          completed: boolean
+          completed_at: string | null
+          created_at: string
+          description: string
+          id: string
+          position: number
+          title: string
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean
+          completed_at?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          position: number
+          title: string
+          user_id: string
+        }
+        Update: {
+          completed?: boolean
+          completed_at?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          position?: number
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      intern_recommendations: {
+        Row: {
+          application_id: string
+          created_at: string
+          fit_summary: string
+          id: string
+          next_steps: Json
+          recommended_track: string
+          skill_gaps: Json
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          application_id: string
+          created_at?: string
+          fit_summary: string
+          id?: string
+          next_steps?: Json
+          recommended_track: string
+          skill_gaps?: Json
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          application_id?: string
+          created_at?: string
+          fit_summary?: string
+          id?: string
+          next_steps?: Json
+          recommended_track?: string
+          skill_gaps?: Json
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "intern_recommendations_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "internship_applications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      internship_applications: {
+        Row: {
+          availability: string
+          career_goals: string
+          education: string
+          id: string
+          preferred_track: string
+          skills: string
+          status: string
+          submitted_at: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          availability: string
+          career_goals: string
+          education: string
+          id?: string
+          preferred_track: string
+          skills: string
+          status?: string
+          submitted_at?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          availability?: string
+          career_goals?: string
+          education?: string
+          id?: string
+          preferred_track?: string
+          skills?: string
+          status?: string
+          submitted_at?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      internship_tracks: {
+        Row: {
+          active: boolean
+          name: string
+          position: number
+          slug: string
+          summary: string
+        }
+        Insert: {
+          active?: boolean
+          name: string
+          position: number
+          slug: string
+          summary: string
+        }
+        Update: {
+          active?: boolean
+          name?: string
+          position?: number
+          slug?: string
+          summary?: string
+        }
+        Relationships: []
+      }
+      milestone_templates: {
+        Row: {
+          active: boolean
+          description: string
+          id: string
+          position: number
+          title: string
+          track_slug: string
+        }
+        Insert: {
+          active?: boolean
+          description?: string
+          id?: string
+          position: number
+          title: string
+          track_slug: string
+        }
+        Update: {
+          active?: boolean
+          description?: string
+          id?: string
+          position?: number
+          title?: string
+          track_slug?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "milestone_templates_track_slug_fkey"
+            columns: ["track_slug"]
+            isOneToOne: false
+            referencedRelation: "internship_tracks"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          college: string
+          created_at: string
+          full_name: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          college?: string
+          created_at?: string
+          full_name?: string
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          college?: string
+          created_at?: string
+          full_name?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
