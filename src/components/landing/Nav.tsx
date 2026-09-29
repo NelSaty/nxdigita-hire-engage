@@ -62,20 +62,17 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link
-            to={signedIn ? "/dashboard" : "/signup"}
-            search={signedIn ? undefined : { mode: "login" }}
-            className="hidden text-sm text-dark-muted transition-colors hover:text-dark-foreground sm:block"
-          >
-            {signedIn ? "Dashboard" : "Login"}
-          </Link>
-          <Link
-            to={signedIn ? "/dashboard" : "/signup"}
-            search={signedIn ? undefined : { mode: "signup" }}
-            className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            {signedIn ? "My Progress" : "Sign Up Free"}
-          </Link>
+          {signedIn ? (
+            <>
+              <Link to="/dashboard" className="hidden text-sm text-dark-muted transition-colors hover:text-dark-foreground sm:block">Dashboard</Link>
+              <Link to="/dashboard" className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">My Progress</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/signup" search={{ mode: "login" }} className="hidden text-sm text-dark-muted transition-colors hover:text-dark-foreground sm:block">Login</Link>
+              <Link to="/signup" search={{ mode: "signup" }} className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">Sign Up Free</Link>
+            </>
+          )}
         </div>
       </div>
     </header>
