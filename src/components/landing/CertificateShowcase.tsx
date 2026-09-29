@@ -168,7 +168,8 @@ export function CertificateShowcase() {
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button
                 onClick={handleDownload}
-                disabled={downloading}
+                disabled={!INTERNSHIP_COMPLETED || downloading}
+                title={!INTERNSHIP_COMPLETED ? "Available after internship completion" : undefined}
                 size="lg"
                 className="h-11 w-full sm:w-auto"
               >
