@@ -91,7 +91,7 @@ function Dashboard() {
 
               <section id="application" className="scroll-mt-24 border-t border-border pt-8">
                 <SectionHeading icon={<BriefcaseBusiness />} title={dashboard.data?.application ? "Your application" : "Apply for an internship"} copy={dashboard.data?.application ? "Your profile has been submitted. Update it while it remains under review." : "Tell us where you are now and where you want your career to go."} />
-                <ApplicationForm initial={dashboard.data} pending={applicationMutation.isPending} error={applicationMutation.error} onSubmit={(data) => applicationMutation.mutate({ data })} />
+                <ApplicationForm initial={dashboard.data ?? null} pending={applicationMutation.isPending} error={applicationMutation.error} onSubmit={(data) => applicationMutation.mutate({ data })} />
               </section>
 
               <section id="recommendation" className="scroll-mt-24 border-t border-border pt-8">
@@ -124,7 +124,7 @@ function ErrorState({ message }: { message: string }) { return <div className="m
 function EmptyState({ text }: { text: string }) { return <div className="rounded-lg border border-dashed border-border bg-card p-8 text-center text-sm text-muted-foreground">{text}</div>; }
 
 type DashboardData = Awaited<ReturnType<typeof getInternDashboard>>;
-function ApplicationForm({ initial, pending, error, onSubmit }: { initial?: DashboardData; pending: boolean; error: Error | null; onSubmit: (data: { fullName: string; college: string; education: string; skills: string; careerGoals: string; availability: string; preferredTrack: string }) => void }) {
+function ApplicationForm({ initial, pending, error, onSubmit }: { initial: DashboardData | null; pending: boolean; error: Error | null; onSubmit: (data: { fullName: string; college: string; education: string; skills: string; careerGoals: string; availability: string; preferredTrack: string }) => void }) {
   function submit(event: FormEvent<HTMLFormElement>) { const form = new FormData(event.currentTarget); event.preventDefault(); onSubmit({ fullName: String(form.get("fullName") ?? ""), college: String(form.get("college") ?? ""), education: String(form.get("education") ?? ""), skills: String(form.get("skills") ?? ""), careerGoals: String(form.get("careerGoals") ?? ""), availability: String(form.get("availability") ?? ""), preferredTrack: String(form.get("preferredTrack") ?? "") }); }
   return <form onSubmit={submit} className="grid gap-5 rounded-lg border border-border bg-card p-5 sm:grid-cols-2 sm:p-6">
     <Field label="Full name"><Input name="fullName" required minLength={2} defaultValue={initial?.profile?.full_name ?? ""} /></Field>

@@ -40,6 +40,7 @@ export function Hero() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   to="/signup"
+                  search={{ mode: "signup" }}
                   className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
                 >
                   Sign Up Free

@@ -7,7 +7,7 @@ import { lovable } from "@/integrations/lovable/index";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/signup")({
-  validateSearch: (search: Record<string, unknown>) => ({ mode: search.mode === "login" ? "login" as const : "signup" as const }),
+  validateSearch: (search: Record<string, unknown>) => ({ mode: search['mode'] === "login" ? "login" as const : "signup" as const }),
   head: () => ({ meta: [
     { title: "Intern Account — NxDigita AI Technologies" },
     { name: "description", content: "Create or access your NxDigita intern account to apply, view recommendations, and follow your progress." },

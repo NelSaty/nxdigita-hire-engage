@@ -157,6 +157,7 @@ export function CareerAdvisor() {
             {output && !loading && (
               <Link
                 to="/signup"
+                search={{ mode: "signup" }}
                 className="mt-6 inline-flex h-10 items-center justify-center self-start rounded-md bg-primary px-5 text-sm font-medium text-primary-foreground hover:bg-primary/90"
               >
                 Start this track — Sign Up Free
