@@ -130,6 +130,65 @@ export type Database = {
         }
         Relationships: []
       }
+      internship_tracks: {
+        Row: {
+          active: boolean
+          name: string
+          position: number
+          slug: string
+          summary: string
+        }
+        Insert: {
+          active?: boolean
+          name: string
+          position: number
+          slug: string
+          summary: string
+        }
+        Update: {
+          active?: boolean
+          name?: string
+          position?: number
+          slug?: string
+          summary?: string
+        }
+        Relationships: []
+      }
+      milestone_templates: {
+        Row: {
+          active: boolean
+          description: string
+          id: string
+          position: number
+          title: string
+          track_slug: string
+        }
+        Insert: {
+          active?: boolean
+          description?: string
+          id?: string
+          position: number
+          title: string
+          track_slug: string
+        }
+        Update: {
+          active?: boolean
+          description?: string
+          id?: string
+          position?: number
+          title?: string
+          track_slug?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "milestone_templates_track_slug_fkey"
+            columns: ["track_slug"]
+            isOneToOne: false
+            referencedRelation: "internship_tracks"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           college: string
